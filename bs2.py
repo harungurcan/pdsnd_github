@@ -10,8 +10,8 @@ info_cities= {"CHICAGO": "chicago.csv",
 print("Greetings! Let us look into some data on bikeshare in the US!")
 cities= ["CHICAGO", "NEW YORK CITY", "WASHINGTON"]
 months= ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE"]
-days= ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"] 
-	
+days= ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+
 def find_city_month_day():
 	while True:
 		print("*"*80)
@@ -45,7 +45,7 @@ def find_city_month_day():
 			print("Type it again. You should choose one of them Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday or all with correct spelling")
 	print("*"*80)
 	print(city, month, day)
-	
+	#returning city, month, and day variables based on the user input
 	return(city, month, day)
 
 def data_loading_from_csv(city, month, day):
@@ -54,32 +54,32 @@ def data_loading_from_csv(city, month, day):
 	print("Showing starting time")
 	print(df["Start Time"])
 	print("*"*80)
-	
+
 
 	print("Showing months")
 	#df["month"] = df["Start Time"].dt.month_name() #Extracting month
 	df["month"] = df["Start Time"].dt.month
 	print(df["month"])
 	print("*"*80)
-	
+
 
 	print("Showing days")
 	df["day_of_week"] = df["Start Time"].dt.day_name() #Extracting month
 	print(df["day_of_week"])
 	print("*"*80)
-	
+
 
 	if month != 'ALL':
 		new_months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE']
 		month = new_months.index(month) + 1
 		df = df[df["month"] == month]
-	
+
 	if day != "ALL":
 		df = df[df["day_of_week"] == day.title()]
-	
-	
+
+
 	return df
-	
+
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
     print('\nCalculating The Most Frequent Times of Travel...\n')
@@ -88,20 +88,20 @@ def time_stats(df):
     most_common_month = df['month'].mode()[0]
     if most_common_month in month_dict.keys():
     	print('Most common month:', most_common_month)
-    	
+
 
     # display the most common month
     	print("The most common month is ", df["month"].mode()[0], "\n")
-    	
+
 
     # display the most common day of week
     	print("The most common day of week  is ", df['day_of_week'].mode()[0], "\n")
-    	
+
 
     # display the most common start hour
     	df['hour'] = df['Start Time'].dt.hour
     	print("The most common start hour is ", df['hour'].mode()[0])
-    	
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('*'*80)
@@ -114,16 +114,16 @@ def station_stats(df):
 
     # display most commonly used start station
     print("The most commonly used start station is ", df['Start Station'].mode()[0], "\n")
-    
+
 
     # display most commonly used end station
     print("The most commonly used end station is ", df['End Station'].mode()[0], "\n")
-    
+
 
     # display most frequent combination of start station and end station trip
     df['combination'] = df['Start Station'] + " " + df['End Station']
     print("The most frequent combination of start station and end station trip is: ", df['combination'].mode()[0])
-    
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('*'*80)
@@ -136,11 +136,11 @@ def trip_duration_stats(df):
 
     # display total travel time
     print("The total travel time is", df['Trip Duration'].sum(), "\n")
-    
+
 
     # display mean travel time
     print("The total mean time is", df['Trip Duration'].mean())
-   
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -176,7 +176,7 @@ def user_stats(df, city):
             x = x+5
         else:
             break
-        
+
 def main():
 	while True:
 		city, month, day = find_city_month_day()
