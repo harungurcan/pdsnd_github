@@ -51,7 +51,7 @@ def find_city_month_day():
 			print("Type it again. You should choose one of them Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday or all with correct spelling")
 	print("*"*80)
 	print(city, month, day)
-
+	#returning city, month, and day variables based on the user input
 	return(city, month, day)
 
 def data_loading_from_csv(city, month, day):
